@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="الموقع الرسمي للأستاذ علي النجار - معلم اللغة الإنجليزية">
+  <meta name="theme-color" content="#0a2538">
+  
+  <title>علي النجار – أستاذ اللغة الإنجليزية</title>
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- ملف الـ CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== القائمة العلوية ===== -->
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-section">
+      <a href="#" class="logo" onclick="goHome(); return false;">
+        <i class="fas fa-graduation-cap"></i>
+        <span>علي النجار</span>
+      </a>
+      <span class="logo-subtitle">للغة الإنجليزية</span>
+    </div>
+    
+    <nav class="main-nav" id="mainNav">
+      <a href="#" onclick="goHome(); return false;" class="nav-link active">
+        <i class="fas fa-home"></i> الرئيسية
+      </a>
+      <a href="#" onclick="showPage('books'); return false;" class="nav-link">
+        <i class="fas fa-book"></i> الكتب
+      </a>
+      <a href="#" onclick="showPage('videos'); return false;" class="nav-link">
+        <i class="fas fa-video"></i> الفيديوهات
+      </a>
+    </nav>
+    
+    <div class="auth-section" id="authSection">
+      <a href="login.html" class="btn btn-login">
+        <i class="fas fa-sign-in-alt"></i>
+        <span>تسجيل الدخول</span>
+      </a>
+      <a href="signup.html" class="btn btn-signup">
+        <i class="fas fa-user-plus"></i>
+        <span>حساب جديد</span>
+      </a>
+    </div>
+    
+    <div class="user-section" id="userSection" style="display:none;">
+      <div class="user-avatar">
+        <img src="1.jpg" alt="المستخدم" id="userAvatar">
+      </div>
+      <div class="user-details">
+        <span class="user-name" id="userNameDisplay">مستخدم</span>
+        <button class="btn-logout" id="logoutBtn" title="تسجيل الخروج">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </div>
+    
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="القائمة">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<!-- ===== القائمة الجانبية للجوال ===== -->
+<div class="mobile-sidebar" id="mobileSidebar">
+  <div class="sidebar-header">
+    <h3>القائمة</h3>
+    <button class="close-sidebar" id="closeSidebar">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#" onclick="goHome(); closeMobileMenu(); return false;"><i class="fas fa-home"></i> الرئيسية</a>
+    <a href="#" onclick="showPage('books'); closeMobileMenu(); return false;"><i class="fas fa-book"></i> الكتب</a>
+    <a href="#" onclick="showPage('videos'); closeMobileMenu(); return false;"><i class="fas fa-video"></i> الفيديوهات</a>
+    <a href="login.html"><i class="fas fa-sign-in-alt"></i> الدخول</a>
+    <a href="signup.html"><i class="fas fa-user-plus"></i> حساب جديد</a>
+  </nav>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ===== قسم البطل الرئيسي ===== -->
+<section class="hero-section" id="homeSection">
+  <div class="hero-background">
+    <div class="hero-pattern"></div>
+    <div class="hero-gradient"></div>
+  </div>
+  
+  <div class="hero-container">
+    <div class="hero-image">
+      <div class="image-frame">
+        <img src="1.jpg" alt="الأستاذ علي النجار" class="teacher-photo" loading="lazy">
+        <div class="image-decoration"></div>
+      </div>
+      <div class="experience-badge">
+        <span class="badge-number">18+</span>
+        <span class="badge-text">سنة خبرة</span>
+      </div>
+    </div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-star"></i>
+        <span>الأفضل في التعليم</span>
+      </div>
+      <h1 class="hero-title">
+        الأستاذ
+        <span class="highlight">علي النجار</span>
+      </h1>
+      <h2 class="hero-subtitle">مُعلم اللغة الإنجليزية المحترف</h2>
+      <p class="hero-description">
+        <i class="fas fa-quote-right"></i>
+        منهج تعليمي متطور يجمع بين الأصالة والحداثة، 
+        يضمن للطالب التفوق والفهم العميق للغة الإنجليزية
+      </p>
+      
+      <!-- تم إزالة الإحصائيات هنا -->
+      
+      <div class="hero-actions">
+        <a href="#" onclick="showPage('books'); return false;" class="btn btn-primary btn-lg">
+          <i class="fas fa-download"></i>
+          تصفح الكتب
+        </a>
+        <a href="#" onclick="showPage('videos'); return false;" class="btn btn-outline btn-lg">
+          <i class="fas fa-play"></i>
+          شاهد الدروس
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,64 C480,160 960,0 1440,64 L1440,120 L0,120 Z" fill="#ffffff"></path>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== قسم المميزات ===== -->
+<section class="features-section" id="homeSection">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">لماذا تختارنا؟</h2>
+      <p class="section-subtitle">مميزات تجعلنا الخيار الأول للطلاب</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+        <h3>خبرة عريقة</h3>
+        <p>أكثر من 18 عاماً من الخبرة في تدريس اللغة الإنجليزية لجميع المراحل</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <h3>محتوى شامل</h3>
+        <p>مكتبة غنية بالكتب التعليمية والموارد المتنوعة لجميع المستويات</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-video"></i>
+        </div>
+        <h3>دروس مرئية</h3>
+        <p>فيديوهات شرح عالية الجودة تغطي جميع المناهج الدراسية</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-headset"></i>
+        </div>
+        <h3>دعم مستمر</h3>
+        <p>فريق دعم فني وتعليمي متاح للإجابة على جميع استفساراتكم</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== قسم البطاقات الرئيسية ===== -->
+<main class="main-content" id="homeSection">
+  <div class="container">
+    <div class="choices-section">
+      <button class="choice-card" onclick="showPage('books')">
+        <div class="card-image-wrapper">
+          <img src="1.jpg" alt="الكتب" class="card-image" loading="lazy">
+          <div class="card-overlay">
+            <i class="fas fa-arrow-left"></i>
+          </div>
+        </div>
+        <div class="card-content">
+          <h2><i class="fas fa-download"></i> تحميل الكتب</h2>
+          <p>مكتبة شاملة من 12 كتاباً تعليمياً</p>
+          <span class="card-tag">مجاني</span>
+        </div>
+      </button>
+      
+      <button class="choice-card" onclick="showPage('videos')">
+        <div class="card-image-wrapper">
+          <img src="1.jpg" alt="الفيديوهات" class="card-image" loading="lazy">
+          <div class="card-overlay">
+            <i class="fas fa-arrow-left"></i>
+          </div>
+        </div>
+        <div class="card-content">
+          <h2><i class="fas fa-play-circle"></i> فيديوهات الشرح</h2>
+          <p>دروس مصوّرة لجميع المراحل الدراسية</p>
+          <span class="card-tag">جديد</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</main>
+
+<!-- ===== صفحة الكتب ===== -->
+<section class="page-section" id="books-page" hidden>
+  <div class="page-container">
+    <div class="page-header">
+      <button class="back-button" onclick="goHome()">
+        <i class="fas fa-arrow-right"></i>
+        <span>العودة للرئيسية</span>
+      </button>
+      <h1 class="page-title">
+        <i class="fas fa-book-open"></i>
+        مكتبة الكتب التعليمية
+      </h1>
+      <p class="page-description">حمّل الكتب التعليمية بصيغة PDF مجاناً</p>
+    </div>
+    
+    <div class="books-filter">
+      <button class="filter-btn active" data-filter="all">الكل</button>
+      <button class="filter-btn" data-filter="primary">ابتدائي</button>
+      <button class="filter-btn" data-filter="middle">إعدادي</button>
+      <button class="filter-btn" data-filter="high">ثانوي</button>
+    </div>
+    
+    <div class="books-grid" id="booksGrid">
+      <!-- سيتم توليد الكتب بواسطة JavaScript -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== صفحة الفيديوهات ===== -->
+<section class="page-section" id="videos-page" hidden>
+  <div class="page-container">
+    <div class="page-header">
+      <button class="back-button" onclick="goHome()">
+        <i class="fas fa-arrow-right"></i>
+        <span>العودة للرئيسية</span>
+      </button>
+      <h1 class="page-title">
+        <i class="fas fa-video"></i>
+        فيديوهات الشرح
+      </h1>
+      <p class="page-description">اختر المرحلة الدراسية لعرض الدروس المتاحة</p>
+    </div>
+    
+    <div class="stage-selector">
+      <button class="stage-btn" onclick="showStage('primary')">
+        <i class="fas fa-child"></i>
+        <span>المرحلة الابتدائية</span>
+      </button>
+      <button class="stage-btn" onclick="showStage('middle')">
+        <i class="fas fa-user-graduate"></i>
+        <span>المرحلة الإعدادية</span>
+      </button>
+      <button class="stage-btn" onclick="showStage('high')">
+        <i class="fas fa-university"></i>
+        <span>المرحلة الثانوية</span>
+      </button>
+    </div>
+    
+    <!-- صفحات المراحل فارغة كما طلبت -->
+    <div class="stage-content" id="primary-stage" hidden>
+      <div class="empty-state">
+        <i class="fas fa-video-slash"></i>
+        <h3>لا توجد فيديوهات حالياً</h3>
+        <p>سيتم إضافة محتوى قريباً</p>
+      </div>
+    </div>
+    
+    <div class="stage-content" id="middle-stage" hidden>
+      <div class="empty-state">
+        <i class="fas fa-video-slash"></i>
+        <h3>لا توجد فيديوهات حالياً</h3>
+        <p>سيتم إضافة محتوى قريباً</p>
+      </div>
+    </div>
+    
+    <div class="stage-content" id="high-stage" hidden>
+      <div class="empty-state">
+        <i class="fas fa-video-slash"></i>
+        <h3>لا توجد فيديوهات حالياً</h3>
+        <p>سيتم إضافة محتوى قريباً</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- تم إزالة قسم تواصل هنا -->
+
+<!-- ===== التذييل ===== -->
+<footer class="main-footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <div class="footer-logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>علي النجار</span>
+      </div>
+      <p class="footer-description">
+        الموقع الرسمي للأستاذ علي النجار - معلم اللغة الإنجليزية
+        <br>نقدم أفضل محتوى تعليمي للطلاب في جميع المراحل
+      </p>
+      <div class="footer-social">
+        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="تيليجرام"><i class="fab fa-telegram"></i></a>
+      </div>
+    </div>
+    
+    <!-- تم إزالة الأعمدة الأخرى (روابط سريعة، مراحل، معلومات) -->
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; 2024 علي النجار - جميع الحقوق محفوظة</p>
+  </div>
+</footer>
+
+<!-- ===== زر الصعود للأعلى ===== -->
+<button class="scroll-top" id="scrollTopBtn" aria-label="الصعود للأعلى">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- ملف الجافاسكريبت -->
+<script src="script.js"></script>
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
