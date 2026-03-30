@@ -160,6 +160,27 @@
       gap: var(--space-lg);
       margin-top: var(--space-lg);
     }
+    
+    .video-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-gold);
+      color: var(--color-blue-deep);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition-normal);
+    }
+    
+    .video-link:hover {
+      background: transparent;
+      border: 2px solid var(--color-gold);
+      color: var(--color-gold);
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
@@ -253,39 +274,30 @@
     
     <!-- محتوى الصف الأول الإعدادي -->
     <div id="first-prep" class="grade-content active">
-      <div class="empty-videos">
+      <div class="empty-videos" id="first-prep-empty">
         <i class="fas fa-video-slash"></i>
         <h3>لا توجد فيديوهات حالياً</h3>
-        <p>سيتم إضافة فيديوهات شرح الصف الأول الإعدادي قريباً</p>
-        <p style="margin-top: var(--space-md); font-size: 0.9rem;">
-          <i class="fas fa-bell"></i> اشترك في القائمة البريدية ليصلك كل جديد
-        </p>
+        <p>أضف فيديوهات الصف الأول الإعدادي في المصفوفة firstGradeVideos</p>
       </div>
       <div id="first-prep-grid" class="videos-grid" style="display: none;"></div>
     </div>
     
     <!-- محتوى الصف الثاني الإعدادي -->
     <div id="second-prep" class="grade-content">
-      <div class="empty-videos">
+      <div class="empty-videos" id="second-prep-empty">
         <i class="fas fa-video-slash"></i>
         <h3>لا توجد فيديوهات حالياً</h3>
-        <p>سيتم إضافة فيديوهات شرح الصف الثاني الإعدادي قريباً</p>
-        <p style="margin-top: var(--space-md); font-size: 0.9rem;">
-          <i class="fas fa-bell"></i> اشترك في القائمة البريدية ليصلك كل جديد
-        </p>
+        <p>أضف فيديوهات الصف الثاني الإعدادي في المصفوفة secondGradeVideos</p>
       </div>
       <div id="second-prep-grid" class="videos-grid" style="display: none;"></div>
     </div>
     
     <!-- محتوى الصف الثالث الإعدادي -->
     <div id="third-prep" class="grade-content">
-      <div class="empty-videos">
+      <div class="empty-videos" id="third-prep-empty">
         <i class="fas fa-video-slash"></i>
         <h3>لا توجد فيديوهات حالياً</h3>
-        <p>سيتم إضافة فيديوهات شرح الصف الثالث الإعدادي قريباً</p>
-        <p style="margin-top: var(--space-md); font-size: 0.9rem;">
-          <i class="fas fa-bell"></i> اشترك في القائمة البريدية ليصلك كل جديد
-        </p>
+        <p>أضف فيديوهات الصف الثالث الإعدادي في المصفوفة thirdGradeVideos</p>
       </div>
       <div id="third-prep-grid" class="videos-grid" style="display: none;"></div>
     </div>
@@ -325,6 +337,79 @@
 </button>
 
 <script>
+  // ============================================
+  // 📌 مـن هـنـا أقـم بـإضـافـة الـفـيـديـوهـات
+  // ============================================
+  
+  // ⬇️ أضف فيديوهات الصف الأول الإعدادي هنا
+  const firstGradeVideos = [
+    // مثال:
+    // {
+    //   title: "عنوان الدرس",
+    //   description: "وصف الدرس",
+    //   thumbnail: "https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg",
+    //   youtubeUrl: "https://www.youtube.com/watch?v=VIDEO_ID",
+    //   duration: "45:00"
+    // }
+  ];
+  
+  // ⬇️ أضف فيديوهات الصف الثاني الإعدادي هنا
+  const secondGradeVideos = [
+    // أضف فيديوهات الصف الثاني هنا
+  ];
+  
+  // ⬇️ أضف فيديوهات الصف الثالث الإعدادي هنا
+  const thirdGradeVideos = [
+    // أضف فيديوهات الصف الثالث هنا
+  ];
+  
+  // ============================================
+  // دوال عرض الفيديوهات (لا تقم بتعديلها)
+  // ============================================
+  
+  function renderVideos(videos, gridId, emptyId) {
+    const grid = document.getElementById(gridId);
+    const empty = document.getElementById(emptyId);
+    
+    if (!grid) return;
+    
+    if (videos.length === 0) {
+      if (empty) empty.style.display = 'block';
+      grid.style.display = 'none';
+      grid.innerHTML = '';
+    } else {
+      if (empty) empty.style.display = 'none';
+      grid.style.display = 'grid';
+      
+      grid.innerHTML = videos.map(video => `
+        <div class="video-card">
+          <div class="video-thumbnail">
+            <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+            <div class="play-overlay">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+          <div class="video-info">
+            <h3>${video.title}</h3>
+            <p>${video.description}</p>
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 8px;">
+              <span class="video-duration"><i class="fas fa-clock"></i> ${video.duration}</span>
+              <a href="${video.youtubeUrl}" class="video-link" target="_blank">
+                <i class="fab fa-youtube"></i> مشاهدة على يوتيوب
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+  
+  function loadAllVideos() {
+    renderVideos(firstGradeVideos, 'first-prep-grid', 'first-prep-empty');
+    renderVideos(secondGradeVideos, 'second-prep-grid', 'second-prep-empty');
+    renderVideos(thirdGradeVideos, 'third-prep-grid', 'third-prep-empty');
+  }
+  
   // إعداد زر الصعود للأعلى
   const scrollTopBtn = document.getElementById('scrollTopBtn');
   if (scrollTopBtn) {
@@ -365,97 +450,7 @@
     });
   }
   
-  // ===== تبديل الصفوف =====
-  const gradeTabs = document.querySelectorAll('.grade-tab');
-  const gradeContents = document.querySelectorAll('.grade-content');
-  
-  gradeTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // إزالة الفئة النشطة من جميع الأزرار
-      gradeTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      
-      // إخفاء جميع المحتويات
-      gradeContents.forEach(content => content.classList.remove('active'));
-      
-      // إظهار المحتوى المحدد
-      const gradeId = tab.getAttribute('data-grade');
-      const activeContent = document.getElementById(gradeId);
-      if (activeContent) {
-        activeContent.classList.add('active');
-      }
-      
-      // تمرير سلس للجزء العلوي من المحتوى
-      setTimeout(() => {
-        document.querySelector('.grade-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
-    });
-  });
-  
-  // ============================================
-  // 📌 أضف فيديوهاتك هنا (المرحلة الإعدادية أو الثانوية)
-  // ============================================
-  
-  // مصفوفة فيديوهات الصف الأول
-  const firstGradeVideos = [
-    // اكتب فيديوهات الصف الأول هنا
-  ];
-  
-  // مصفوفة فيديوهات الصف الثاني
-  const secondGradeVideos = [
-    // اكتب فيديوهات الصف الثاني هنا
-  ];
-  
-  // مصفوفة فيديوهات الصف الثالث
-  const thirdGradeVideos = [
-    // اكتب فيديوهات الصف الثالث هنا
-  ];
-  
-  // ===== دوال عرض الفيديوهات =====
-  function renderVideos(videos, gridId, emptyId) {
-    const grid = document.getElementById(gridId);
-    const empty = document.getElementById(emptyId);
-    
-    if (!grid) return;
-    
-    if (videos.length === 0) {
-      if (empty) empty.style.display = 'block';
-      grid.style.display = 'none';
-      grid.innerHTML = '';
-    } else {
-      if (empty) empty.style.display = 'none';
-      grid.style.display = 'grid';
-      
-      grid.innerHTML = videos.map(video => `
-        <div class="video-card">
-          <div class="video-thumbnail">
-            <img src="${video.thumbnail}" alt="${video.title}">
-            <div class="play-overlay">
-              <i class="fas fa-play"></i>
-            </div>
-          </div>
-          <div class="video-info">
-            <h3>${video.title}</h3>
-            <p>${video.description}</p>
-            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 8px;">
-              <span class="video-duration"><i class="fas fa-clock"></i> ${video.duration}</span>
-              <a href="${video.youtubeUrl}" class="video-link" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-gold); color: var(--color-blue-deep); padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; text-decoration: none;">
-                <i class="fab fa-youtube"></i> مشاهدة على يوتيوب
-              </a>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-  }
-  
-  function loadAllVideos() {
-    renderVideos(firstGradeVideos, 'first-prep-grid', 'first-prep-empty');
-    renderVideos(secondGradeVideos, 'second-prep-grid', 'second-prep-empty');
-    renderVideos(thirdGradeVideos, 'third-prep-grid', 'third-prep-empty');
-  }
-  
-  // ===== تبديل الصفوف =====
+  // تبديل الصفوف
   const gradeTabs = document.querySelectorAll('.grade-tab');
   const gradeContents = document.querySelectorAll('.grade-content');
   let currentGrade = 'first-prep';
@@ -480,7 +475,7 @@
     });
   });
   
-  // ===== وظيفة البحث =====
+  // وظيفة البحث
   const searchInput = document.getElementById('searchInput');
   const searchBtn = document.getElementById('searchBtn');
   
@@ -544,7 +539,7 @@
             <p>${video.description}</p>
             <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 8px;">
               <span class="video-duration"><i class="fas fa-clock"></i> ${video.duration}</span>
-              <a href="${video.youtubeUrl}" class="video-link" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-gold); color: var(--color-blue-deep); padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; text-decoration: none;">
+              <a href="${video.youtubeUrl}" class="video-link" target="_blank">
                 <i class="fab fa-youtube"></i> مشاهدة على يوتيوب
               </a>
             </div>
@@ -564,65 +559,8 @@
     if (e.key === 'Enter') performSearch();
   });
   
+  // تحميل الفيديوهات عند بدء الصفحة
   loadAllVideos();
-    // هنا يمكنك لاحقاً إضافة كود البحث الفعلي عندما توجد فيديوهات
-    // مثال:
-    // searchVideos(searchTerm);
-  }
-  
-  searchBtn.addEventListener('click', performSearch);
-  searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      performSearch();
-    }
-  });
-  
-  // دالة عرض إشعار مؤقت
-  function showToast(message) {
-    // إزالة أي إشعار موجود
-    const existingToast = document.querySelector('.custom-toast');
-    if (existingToast) existingToast.remove();
-    
-    const toast = document.createElement('div');
-    toast.className = 'custom-toast';
-    toast.innerHTML = `
-      <i class="fas fa-info-circle"></i>
-      <span>${message}</span>
-    `;
-    toast.style.cssText = `
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--color-gold);
-      color: var(--color-blue-deep);
-      padding: 12px 24px;
-      border-radius: 50px;
-      font-weight: 600;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: var(--shadow-lg);
-      animation: slideUp 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
-    `;
-    
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
-  }
-  
-  // إضافة أنيميشن للتوست
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-      to { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-    @keyframes fadeOut {
-      to { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-    }
-  `;
-  document.head.appendChild(style);
 </script>
 </body>
 </html>
